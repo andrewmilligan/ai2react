@@ -16,10 +16,11 @@ export function makeAi2React(opts = {}) {
     ${styles}
   `
 
-  function Component() {
+  function Component(props) {
     const ref = useResizing({ containerId, namespace })
+    const __html = (typeof html === 'function') ? html(props) : html
     return (
-      <Wrapper ref={ref} dangerouslySetInnerHTML={{ __html: html }} />
+      <Wrapper ref={ref} dangerouslySetInnerHTML={{ __html }} />
     )
   }
 

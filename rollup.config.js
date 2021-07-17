@@ -37,6 +37,7 @@ export default {
         { src: 'README.md', dest: 'dist' },
         { src: 'LICENSE', dest: 'dist' },
         { src: 'package.json', dest: 'dist' },
+        { src: 'ai2react.js', dest: 'dist' },
       ],
     }),
   ],

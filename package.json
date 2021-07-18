@@ -3,11 +3,11 @@
   "version": "1.0.0",
   "description": "Code for the ai2react library",
   "license": "ISC",
-  "repository": "git@gitlab.inside.ap.org:newsapps/ai2react",
+  "repository": "https://github.com/andrewmilligan/ai2react",
   "scripts": {
     "release": "echo 'Successfully released package!'",
     "prerelease": "yarn version",
-    "postversion": "yarn build && git push --tags && yarn publish ./dist/ --new-version $npm_package_version && git push",
+    "postversion": "yarn build && yarn publish ./dist/ --new-version $npm_package_version && git push --follow-tags",
     "test": "echo \"Error: no test specified\" && exit 1",
     "prebuild": "rm -rf ./dist/",
     "build": "rollup -c",

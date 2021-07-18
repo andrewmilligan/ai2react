@@ -1,24 +1,23 @@
 ai2react
 ========
 
+A rough and opinionated riff on [the OG `ai2html`][ai2html] ([documentation
+here][ai2html-docs]) that outputs a JS module that exports a React component
+rather than a plain HTML snippet. The raw HTML that `ai2html` gives you is
+great because it's self-contained and super portable, but I wanted a way to
+integrate it a little more seamlessly into a React workflow with a modern build
+process. Part of the inspiration for this comes from [the Reuters Graphics port
+of `ai2html`][reuters-ai2html], which includes `ai2svelte.js` as a way to
+accomplish a similar goal.
+
+This is designed more as a utility library for the
+[`ai2react-loader`][ai2react-loader] Webpack loader than anything. If you plan
+to use it directly your mileage may vary.
+
 ## Installing
 
-The `ai2react` library is available on [our internal NPM registry on
-Artifactory][ap-npm], so you should set up your package manager to use that
-registry if you haven't already. Using your package manager of choice:
-
-```
-yarn config set registry https://artifactory.ap.org/api/npm/npm/ --global
-```
-
-or:
-
-```
-npm config set registry https://artifactory.ap.org/api/npm/npm/ --global
-```
-
-Once you have that set up you can install the package like normal. Again, you
-can use whichever package manager you like. For instance, yarn:
+Install `ai2react` from NPM using whichever package manager you like. For
+instance, yarn:
 
 ```
 yarn add ai2react
@@ -30,49 +29,22 @@ or npm:
 npm install ai2react
 ```
 
-## Contributing
+## Usage
 
-To contribute to this project, start by cloning this repository, navigating
-into the cloned directory, and installing all the dependencies (e.g., `yarn
-install`). This project uses [Storybook][] to [demonstrate individual
-components][proj-storybook] in isolation rather than in the context of a whole
-app, and you can start a Storybook server locally for live feedback during
-development with:
+The heart and soul of `ai2react` really boils down to [`ai2html`][ai2html] with
+a few small tweaks to the final output. Responsiveness is enforced
+unyieldingly, but otherwise most of the configurations and options that
+`ai2html` provides should be available.
 
-```
-yarn storybook
-```
+You are welcome to install and use the `ai2react.js` Illustrator script
+directly, but as I mentioned above, this package is really made to be used in
+conjunction with [`ai2react-loader`][ai2react-loader]. If you do want to use
+the script directly, [refer to the `ai2html` docs][ai2html-docs]; running the
+script through Illustrator is exactly the same process.
 
-That should open up the project's stories in your browser where you can see
-changes you make in realtime. As you change an existing component make sure its
-stories still work and make sense; if you're adding a new component try to add
-stories for it as well!
+Best of luck.
 
-This project also uses [ESLint][] to maintain code quality and consistency.
-The linter is automatically run on merge requests, but you can run it locally
-with:
-
-```
-yarn lint
-```
-
-Note that running `yarn lint --fix` will automatically fix any linting errors
-that can be fixed without you input.
-
-Please do any development on a feature branch and submit a merge request when
-you're ready for a second set of :eyes:
-
-Once a new version of the library is ready to publish you can publish it with:
-
-```
-yarn release
-```
-
-That will prompt you for a new version number, build the library, and publish
-it to our internal NPM.
-
-Enjoy! :heart:
-
-[ap-npm]: https://artifactory.ap.org/webapp/#/artifacts/browse/tree/General/npm
-[Storybook]: https://storybook.js.org/
-[ESLint]: https://eslint.org/
+[ai2html]: https://github.com/newsdev/ai2html
+[ai2html-docs]: http://ai2html.org/
+[ai2react-loader]: https://github.com/andrewmilligan/ai2react-loader
+[reuters-ai2html]: https://github.com/reuters-graphics/ai2html

@@ -31,7 +31,7 @@ export function useResizing(opts = {}) {
       const container = ref.current.querySelector(`#${containerId}`)
       const artboards = container.querySelectorAll(`.${namespace}artboard[data-min-width]`)
       const width = Math.round(container.getBoundingClientRect().width)
-      artboards.forEach((el, i) => {
+      artboards.forEach(el => {
         const minwidth = +el.getAttribute('data-min-width')
         const maxwidth = +(el.getAttribute('data-max-width') || Infinity)
         if (minwidth <= width && maxwidth >= width) {
@@ -56,7 +56,7 @@ export function useResizing(opts = {}) {
     }
 
     update()
-    const onResize = throttle(update, 200, ref)
+    const onResize = throttle(update, 200, throttleRef)
     document.addEventListener('DOMContentLoaded', update)
     window.addEventListener('resize', onResize)
 

@@ -1,5 +1,3 @@
-import { useRef } from 'react'
-
 export function elementInView(el) {
   const bounds = el.getBoundingClientRect()
   return bounds.top < window.innerHeight && bounds.bottom > 0
@@ -19,7 +17,7 @@ export function throttle(func, wait, throttleRef) {
     throttleRef.current.timeout = null
     func()
   }
-  return function() {
+  return () => {
     const { timeout, previous } = throttleRef.current
     const remaining = wait - (Date.now() - previous)
     if (remaining <= 0 || remaining > wait) {

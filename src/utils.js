@@ -1,3 +1,5 @@
+import { useRef } from 'react'
+
 export function elementInView(el) {
   const bounds = el.getBoundingClientRect()
   return bounds.top < window.innerHeight && bounds.bottom > 0
@@ -11,7 +13,7 @@ export function updateImgSrc(img) {
   }
 }
 
-export function throttle(func, wait) {
+export function throttle(func, wait, throttleRef) {
   const run = () => {
     throttleRef.current.previous = Date.now()
     throttleRef.current.timeout = null

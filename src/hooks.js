@@ -31,10 +31,10 @@ export function useResizing(opts = {}) {
       const container = ref.current.querySelector(`#${containerId}`)
       const artboards = container.querySelectorAll(`.${namespace}artboard[data-min-width]`)
       const width = Math.round(container.getBoundingClientRect().width)
-      artboards.forEach(el => {
+      artboards.forEach((el, i) => {
         const minwidth = +el.getAttribute('data-min-width')
-        const maxwidth = +el.getAttribute('data-max-width')
-        if (minwidth <= width && (maxwidth >= width || maxwidth === null)) {
+        const maxwidth = +(el.getAttribute('data-max-width') || Infinity)
+        if (minwidth <= width && maxwidth >= width) {
           if (!waiting.current) {
             el.querySelectorAll(`.${namespace}aiImg`).forEach(updateImgSrc)
           }
@@ -55,7 +55,8 @@ export function useResizing(opts = {}) {
       }
     }
 
-    const onResize = throttle(update, 200)
+    update()
+    const onResize = throttle(update, 200, ref)
     document.addEventListener('DOMContentLoaded', update)
     window.addEventListener('resize', onResize)
 
